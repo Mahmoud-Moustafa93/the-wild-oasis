@@ -13,11 +13,13 @@ import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
+  HiPencilSquare,
   HiTrash,
 } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckout";
 import { useDeleteBooking } from "./useDeleteBooking";
+import UpdateBookingForm from "./UpdateBookingForm";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -64,12 +66,20 @@ function BookingRow({
   const { checkout, isCheckingOut } = useCheckout();
   const { deleteBooking, isDeleting } = useDeleteBooking();
 
-  const isWorking = isCheckingOut || isDeleting;
-
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
     "checked-out": "silver",
+  };
+
+  const bookingData = {
+    startDate,
+    endDate,
+    numNights,
+    numGuests,
+    totalPrice,
+    status,
+    id: bookingId,
   };
 
   return (
@@ -127,11 +137,19 @@ function BookingRow({
               </Menus.Button>
             )}
 
+            <Modal.Open opens="update">
+              <Menus.Button icon={<HiPencilSquare />}>Update</Menus.Button>
+            </Modal.Open>
+
             <Modal.Open opens="delete">
               <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
+
+        <Modal.Window name="update">
+          <UpdateBookingForm bookingToUpdate={bookingData} />
+        </Modal.Window>
 
         <Modal.Window name="delete">
           <ConfirmDelete
