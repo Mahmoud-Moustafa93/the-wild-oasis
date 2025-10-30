@@ -15,7 +15,7 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("mahmoud@example.com");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("pass1234");
   const { login, isLoading: isSigningIn } = useLogin();
 
   useEffect(() => {
