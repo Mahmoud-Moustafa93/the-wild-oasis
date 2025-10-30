@@ -13,8 +13,8 @@ This full stack web app is created using:
 - React Router
 - React Query
 - React Hook Form
-- Supabase (RESTful API)
+- Supabase
 
 **© Copyright by _[Mahmoud Mostafa](https://pph.me/mahmoudmostafa)_**
 
-**Wednesday, January 24 2024**
+**Wednesday, January 24, 2024**
